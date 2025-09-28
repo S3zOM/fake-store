@@ -11,9 +11,7 @@ export default function Footer() {
             xs={12}
             md={6}
             className="text-center text-md-start mb-2 mb-md-0">
-            <p className="mb-0">
-              ©  Fake Shop | By Zori
-            </p>
+            <p className="mb-0">© Fake Shop | By Zori</p>
           </Col>
 
           <Col

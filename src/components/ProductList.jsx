@@ -49,7 +49,6 @@ export default function ProductList() {
                 />
               </div>
 
-              {/* Product Content */}
               <div className="flex flex-col flex-grow p-4">
                 <h2 className="text-base font-bold mb-1 text-blue-900 break-words">
                   {truncate(product.title, 40)}
@@ -60,12 +59,13 @@ export default function ProductList() {
                 <span className="font-bold text-blue-600 text-base mb-3">
                   ${product.price}
                 </span>
+
                 <div className="flex flex-col sm:flex-row gap-2 mt-auto">
                   <button
-                    className={`py-2 px-3 rounded-lg border-2 text-sm font-semibold transition-colors duration-200 focus:outline-none flex-1 ${
+                    className={`py-2 px-3 rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none flex items-center justify-center flex-1 border ${
                       isFavorited(product)
                         ? "bg-blue-200 text-blue-900 hover:bg-blue-300 active:bg-blue-400 border-blue-300"
-                        : "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700 border-blue-600"
+                        : "bg-blue-500 text-white hover:bg-blue-400 active:bg-blue-600 border-blue-500"
                     }`}
                     onClick={() => toggleFavorite(product)}
                     aria-label={
@@ -73,7 +73,7 @@ export default function ProductList() {
                         ? "Remove from favorites"
                         : "Add to favorites"
                     }>
-                    {isFavorited(product) ? " Favorited" : " Favorite"}
+                    {isFavorited(product) ? "Favorited" : "Favorite"}
                   </button>
 
                   <Link
