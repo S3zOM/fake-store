@@ -46,22 +46,32 @@ export default function ProductList() {
                   src={product.image}
                   alt={product.title}
                   className="h-5/6 w-5/6 object-contain rounded-xl"
+                  style={{ textDecoration: "none" }}
                 />
               </div>
 
               <div className="flex flex-col flex-grow p-4">
-                <h2 className="text-base font-bold mb-1 text-blue-900 break-words">
+                <h2
+                  className="text-base font-bold mb-1 text-blue-900 break-words"
+                  style={{ textDecoration: "none" }}
+                >
                   {truncate(product.title, 40)}
                 </h2>
-                <p className="text-xs text-blue-700 flex-grow mb-2 line-clamp-2">
+                <p
+                  className="text-xs text-blue-700 flex-grow mb-2 line-clamp-2"
+                  style={{ textDecoration: "none" }}
+                >
                   {truncate(product.description, 70)}
                 </p>
-                <span className="font-bold text-blue-600 text-base mb-3">
+                <span
+                  className="font-bold text-blue-600 text-base mb-3"
+                  style={{ textDecoration: "none" }}
+                >
                   ${product.price}
                 </span>
 
                 <div className="flex flex-col sm:flex-row gap-2 mt-auto">
-                  <button
+                  <a
                     className={`py-2 px-3 rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none flex items-center justify-center flex-1 border ${
                       isFavorited(product)
                         ? "bg-blue-200 text-blue-900 hover:bg-blue-300 active:bg-blue-400 border-blue-300"
@@ -72,14 +82,18 @@ export default function ProductList() {
                       isFavorited(product)
                         ? "Remove from favorites"
                         : "Add to favorites"
-                    }>
+                    }
+                    style={{ textDecoration: "none" }}
+                  >
                     {isFavorited(product) ? "Favorited" : "Favorite"}
-                  </button>
+                  </a>
 
                   <Link
                     href={`/products/${product.id}`}
                     className="py-2 px-3 rounded-lg text-sm font-semibold transition-colors duration-200 bg-blue-500 text-white hover:bg-blue-400 active:bg-blue-600 focus:outline-none flex items-center justify-center flex-1 border border-blue-500 no-underline"
-                    aria-label={`View details for ${product.title}`}>
+                    aria-label={`View details for ${product.title}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     <FaInfoCircle className="mr-1" />
                     Details
                   </Link>

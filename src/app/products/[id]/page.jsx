@@ -7,6 +7,7 @@ export default function ProductDetail() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
@@ -20,7 +21,21 @@ export default function ProductDetail() {
       .catch((err) => {
         setError(err.message);
       });
+    const favs = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setFavorites(favs);
   }, [id]);
+
+  const isFavorited = (product) => favorites.some((f) => f.id === product?.id);
+  const toggleFavorite = (product) => {
+    let updated;
+    if (isFavorited(product)) {
+      updated = favorites.filter((f) => f.id !== product.id);
+    } else {
+      updated = [...favorites, product];
+    }
+    setFavorites(updated);
+    localStorage.setItem("favorites", JSON.stringify(updated));
+  };
 
   return (
     <div className="bg-blue-50 min-h-screen py-8 flex flex-col items-center">
@@ -38,6 +53,20 @@ export default function ProductDetail() {
             alt={product.title}
             className="w-32 h-32 object-contain mx-auto mb-4 bg-blue-100 rounded-xl"
           />
+          <button
+            className={`mb-4 py-2 px-4 rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none border flex items-center mx-auto ${
+              isFavorited(product)
+                ? "bg-blue-200 text-blue-900 hover:bg-blue-300 active:bg-blue-400 border-blue-300"
+                : "bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700 border-blue-600"
+            }`}
+            onClick={() => toggleFavorite(product)}
+            aria-label={
+              isFavorited(product)
+                ? "Remove from favorites"
+                : "Add to favorites"
+            }>
+            {isFavorited(product) ? "★ Favorited" : "☆ Favorite"}
+          </button>
           <h1 className="text-2xl font-bold mb-2 text-blue-900">
             {product.title}
           </h1>
